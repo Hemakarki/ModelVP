@@ -1,0 +1,47 @@
+<div>
+    <!-- loading section -->
+    <div class="aligncenter_loader" *ngIf="isLoading">
+        <div class="is-loading"><i class="page-loader"></i></div>
+    </div>
+    <!-- section ends  -->
+    <div class="row" *ngIf="!isLoading">
+        <div class="col-sm-12 col-md-9 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-6 col-12">
+                            <strong>View User</strong>
+                        </div>
+                        <div class="col-sm-6 col-12 text-right linehght">
+                            <button class="btn btn-secondary pull-right widthset" type="button" [routerLink]="['/users/list']">Back</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-block userdetail">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th width="20%">Name</th>
+                                    <td data-label="Name">{{user.firstName}} {{user.lastName}}</td>
+                                </tr>
+                                <tr>
+                                    <th width="20%">Email</th>
+                                    <td data-label="Email">{{user.email}}</td>
+                                </tr>
+                                <tr>
+                                    <th width="20%">Activated on</th>
+                                    <td data-label="Activated on">{{user.createdAt | date:'dd/MM/yyyy'}}</td>
+                                </tr>
+                                <tr>
+                                    <th width="20%">Modified on</th>
+                                    <td data-label="Modified on">{{user.updatedAt | date:'dd/MM/yyyy'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

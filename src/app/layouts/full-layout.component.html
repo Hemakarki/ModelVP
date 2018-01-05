@@ -1,0 +1,64 @@
+<header class="app-header navbar">
+  <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">&#9776;</button>
+  <a class="navbar-brand hidden-md-down" href="#">
+    <p>R<span>app</span></p>
+  </a>
+
+  <ul class="nav navbar-nav hidden-md-down width">
+    <li class="nav-item">
+      <a class="nav-link navbar-toggler sidebar-toggler" href="#">&#9776;</a>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav ml-auto">
+    <li class="nav-item dropdown removedropdwn" dropdown (onToggle)="toggled($event)">
+      <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle>
+        <img src="assets/img/avatars/3.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/change-password']">Change password?</a>
+        <!-- <a class="dropdown-item" href="JavaScript:Void(0);" style="cursor: not-allowed;"><i class="fa fa-wrench"></i> Setting</a> -->
+        <div class="divider"></div>
+        <a class="dropdown-item" (click)="logout()" href="#"><i class="fa fa-lock"></i> Logout</a>
+      </div>
+    </li>
+  </ul>
+</header>
+
+<div class="app-body">
+  <div class="sidebar">
+    <nav class="sidebar-nav">
+      <ul class="nav panel-body">
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: not-allowed;" title="Dashboard"><i class="icon-dashboard"></i><span> Dashboard</span></a>
+        </li>
+        <li class="nav-item" [ngClass]="{'not-allowed-custom':!access.users}">
+            <a (click)="layout('users');" [ngClass]="{'active': active == 'users'}" class="nav-link" title="Users">
+            <i class="icon-user"></i> <span>Users</span> </a>
+        </li>
+        <li class="nav-item" [ngClass]="{'not-allowed-custom':!access.Subscription}">
+          <a (click)="layout('Subscription')" [ngClass]="{'active': active == 'Subscription'}" class="nav-link" title="Subscription">
+          <i class="icon-settings"></i> <span>Subscription</span> </a>
+      </li>
+      </ul>
+    </nav>
+  </div>
+
+<!-- Main content -->
+<main class="main">
+  <div class="mainarea">
+    <div class="main-content">
+      <div class="content-header">
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+          <breadcrumbs></breadcrumbs>
+        </ol>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</main>
+</div>
+
+<!-- <footer class="app-footer">
+</footer> -->

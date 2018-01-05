@@ -1,0 +1,63 @@
+<div class="category-wrapper">
+    <div *ngIf="isLoading" class="overlayloader">
+        <div class="loader"></div>
+    </div>
+    <!-- loading section -->
+    <div class="aligncenter_loader" *ngIf="isPageLoading">
+        <div class="is-loading"><i class="page-loader"></i></div>
+    </div>
+    <!-- loading section ends  -->
+    <ngx-flash-messages></ngx-flash-messages>
+    <div class="card" *ngIf="!isPageLoading">
+        <div class="card-header">
+            <strong>{{SubscriptionId ? 'Edit' : 'Add'}} Subscription </strong>
+        </div>
+        <form role="form" (ngSubmit)="save()" #addSubscriptionForm="ngForm">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group  has-required">
+                            <label for="nf-name">Title</label>
+                            <input autofocus type="text" id="title" name="title" class="form-control" #title="ngModel" [(ngModel)]="results.title" pattern="[a-zA-Z][a-zA-Z0-9!@#$%^&*()\s]*" required>
+                            <div class="error-block">
+                                <small *ngIf="title.errors?.required && title.touched" class="text-danger">
+                                    Title is required.
+                                </small>
+                                <small *ngIf="title.errors?.pattern && title.touched" class="text-danger">
+                                    Invalid input.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group" >
+                            <label for="nf-type">Description</label>
+                            <textarea id="elastic-textarea" [(ngModel)]="results.description"
+                                    name="description"      autosize ></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group relative has-required">
+                            <label for="nf-name">Category</label>
+                            <input autofocus type="text" id="category" name="category" class="form-control" #category="ngModel" [(ngModel)]="results.category" required>
+                            <div class="error-block">
+                                <small *ngIf="category.errors?.required && category.touched" class="text-danger">
+                                    Category is required.
+                                </small>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="card-footer">
+                <button type="reset" class="btn btn-secondary whiteclr" [routerLink]="['/Subscription/list']"> Cancel</button>
+                 <!-- <button type="submit" class="pull-right btn btn-primary orangeclr" >{{SubscriptionID ? 'Update' : 'Save'}}</button> -->
+                <button type="submit" class="pull-right btn btn-primary orangeclr" [disabled]="!addSubscriptionForm.valid">{{SubscriptionID ? 'Update' : 'Save'}}</button>
+            </div>
+        </form>
+    </div>
+    <!-- .card -->
+</div>
+<!-- .category-wrapper -->

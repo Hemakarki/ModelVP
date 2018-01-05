@@ -1,0 +1,54 @@
+<!-- Loader div -->
+<div *ngIf="isPageLoading" class="overlayloader">
+    <div class="loader"></div>
+</div>
+<section class="login-page"></section>
+<div class="login-box">
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <div class="login-logo">
+            <p>Instagram <span>Reportapp</span></p>
+        </div>
+        <form role="form" #loginForm="ngForm" (ngSubmit)="login()">
+            <div class="text-center" *ngIf="errMessage">
+                <span class="text-danger">
+                    {{errMessage}}
+                </span>
+            </div>
+            <div class="form-group has-feedback">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" [(ngModel)]="user.username" (ngModelChange)="errMessage=''" #username="ngModel" autofocus username required>
+                <div *ngIf="username.errors && username.touched" class="err">
+                    <span class="text-danger" [hidden]="!username.errors.required">Username is required.</span>
+                </div>
+                <div *ngIf="username.errors?.username && username.touched" class="err" >
+                    <span class="text-danger">Username is not valid.</span>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" [(ngModel)]="user.password" #password="ngModel" (ngModelChange)="errMessage=''" required>
+                <div *ngIf="password.errors && password.touched" class="err">
+                    <span class="text-danger" [hidden]="!password.errors.required">Password is required.</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-12">
+                    <button type="submit" class=" btn-login" [disabled]="!loginForm.valid">Login</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-6">
+                    <div class="custome-check loginpage">
+                        <input id="option5" name="status" type="checkbox" [(ngModel)]="rememberMe">
+                        <label for="option5">Remember me</label>
+                    </div>
+                </div>
+                 <div class="col-sm-6 col-6">
+                    <a class="forgotlink" routerLinkActive="active" [routerLink]="['/forgot-password']">Forgot password?</a>
+                </div>
+            </div>            
+        </form>
+    </div>
+    <!-- /.login-box-body -->
+</div>
