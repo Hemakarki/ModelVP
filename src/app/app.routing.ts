@@ -40,6 +40,10 @@ export const routes: Routes = [
         path: 'Subscription',
         loadChildren: './Subscription/Subscription.module#SubscriptionModule'
       },{
+        path: 'Coins_package',
+        loadChildren: './Coins_package/Coins_package.module#Coins_packageModule'
+      },
+      {
         path: 'users',
         loadChildren: './users/users.module#UsersModule'      
       }

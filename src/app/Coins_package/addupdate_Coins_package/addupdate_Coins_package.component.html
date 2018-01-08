@@ -10,9 +10,9 @@
     <ngx-flash-messages></ngx-flash-messages>
     <div class="card" *ngIf="!isPageLoading">
         <div class="card-header">
-            <strong>{{SubscriptionId ? 'Edit' : 'Add'}} Subscription </strong>
+            <strong>{{Coins_packageId ? 'Edit' : 'Add'}} Coins_package </strong>
         </div>
-        <form role="form" (ngSubmit)="save()" #addSubscriptionForm="ngForm">
+        <form role="form" (ngSubmit)="save()" #addCoins_packageForm="ngForm">
             <div class="card-block">
                 <div class="row">
                     <div class="col-sm-6">
@@ -58,8 +58,8 @@
                     </div>
                 </div>
             <div class="card-footer">
-                <button type="reset" class="btn btn-secondary whiteclr" [routerLink]="['/Subscription/list']"> Cancel</button>
-                <button type="submit" class="pull-right btn btn-primary orangeclr" [disabled]="!addSubscriptionForm.valid">{{SubscriptionID ? 'Update' : 'Save'}}</button>
+                <button type="reset" class="btn btn-secondary whiteclr" [routerLink]="['/Coins_package/list']"> Cancel</button>
+                <button type="submit" class="pull-right btn btn-primary orangeclr" [disabled]="!addCoins_packageForm.valid">{{Coins_packageID ? 'Update' : 'Save'}}</button>
             </div>
         </form>
     </div>

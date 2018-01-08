@@ -54,7 +54,7 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
     LoginComponent,
-    ForgotPasswordComponent,
+    ForgotPasswordComponent
     // ChangePasswordComponent
   ],
   providers: [

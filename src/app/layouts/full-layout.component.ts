@@ -16,6 +16,7 @@ export class FullLayoutComponent implements OnInit {
   public access = {
         users:false,
         Subscription:false,
+        Coins_package:false,
         change_password:false
 
     }
@@ -33,6 +34,7 @@ export class FullLayoutComponent implements OnInit {
 
                 users:true,
                 Subscription:true,
+                Coins_package:true,
                 change_password: true
 
             }
@@ -40,6 +42,7 @@ export class FullLayoutComponent implements OnInit {
             this.access = {
                 users:actions['users'].view,
                 Subscription:actions['Subscription'].view,
+                Coins_package:actions['Coins_package'].view,
                 change_password: actions['change-password'].view
 
             }
@@ -60,7 +63,10 @@ export class FullLayoutComponent implements OnInit {
             this.applyRouter(key);
         } else if(key == 'Subscription' && this.access.Subscription) {
             this.applyRouter(key);
-        }else if(key == 'change-password' && this.access.change_password) {
+        }else if(key == 'Coins_package' && this.access.Coins_package) {
+            this.applyRouter(key);
+        }
+        else if(key == 'change-password' && this.access.change_password) {
             this.applyRouter(key);
         } else {
         }
