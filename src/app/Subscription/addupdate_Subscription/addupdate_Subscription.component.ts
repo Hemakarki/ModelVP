@@ -24,7 +24,7 @@ export class AddUpdateSubscriptionComponent implements OnInit {
     public errMessage = '';
 
     constructor(private _router : Router,private _activateRouter: ActivatedRoute, private _SubscriptionService:SubscriptionService ,private _commanService:CommanService, private _flashMessagesService: FlashMessagesService,private _cookieService: CookieService){
-    	this.SubscriptionId = _activateRouter.snapshot.params['id'];
+        this.SubscriptionId = _activateRouter.snapshot.params['id'];
         	if(this.SubscriptionId){
     		this._SubscriptionService.getRecordById(this.SubscriptionId).subscribe( res => {
     			this.isPageLoading = false;
@@ -58,8 +58,6 @@ export class AddUpdateSubscriptionComponent implements OnInit {
       		})
       	} else {
       		this._SubscriptionService.addRecord(this.results).subscribe(res => {
-                  console.log("Subscription added");
-                  console.log(res);
                 this.isLoading         = false;
                 this._cookieService.put('SubscriptionAlert', 'Added successfully.');
                 this._router.navigate(['/Subscription/list']);

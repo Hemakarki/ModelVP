@@ -23,25 +23,24 @@ export class SubscriptionService {
 	}
 
 	getAllRecords(rowsOnPage, activePage, sortTrem , search = '') {
-
-        let url = this._host +'/allSubscriptionRoutes?count='+rowsOnPage+'&page='+activePage+'&sortBy='+sortTrem+'&search='+search;
+        let url = this._host +'/getAllSubscriptions?count='+rowsOnPage+'&page='+activePage+'&sortBy='+sortTrem+'&search='+search;
         return this._http.get(url, this.getHeaders()).map((res:Response) => res.json())
-    }
-
-	getRecordById(id){
-		return this._http.get(this._host +'/SubscriptionRoutes/'+ id, this.getHeaders()).map((res:Response) => res.json())
 	}
 
 	addRecord(field){
-		return this._http.post(this._host +'/SubscriptionRoutes',field, this.getHeaders()).map((res:Response) => res.json());
+		return this._http.post(this._host +'/addSubscription',field).map((res:Response) => res.json());
+	}
+
+	getRecordById(id){
+		return this._http.get(this._host +'/getSubscriptionById/'+ id, this.getHeaders()).map((res:Response) => res.json())
 	}
 
 	editRecord(field){
-		return this._http.put(this._host+'/SubscriptionRoutes/'+field.id,field, this.getHeaders()).map((res:Response) => res.json());
+		return this._http.put(this._host+'/updateSubscription/'+field._id,field, this.getHeaders()).map((res:Response) => res.json());
 	}
 
 	deleteRecord(Id){
-		return this._http.delete(this._host+'/SubscriptionRoutes/'+Id, this.getHeaders()).map((res:Response) => res.json())
+		return this._http.delete(this._host+'/removeSubscription/'+Id, this.getHeaders()).map((res:Response) => res.json())
 	}
 
 }

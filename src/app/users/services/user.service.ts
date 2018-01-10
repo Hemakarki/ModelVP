@@ -19,7 +19,7 @@ export class UserService {
         let headers         = new Headers();        
         this._accessToken   = this._commanService.getAccessToken();
         
-        let url = this._host +'/user?count='+rowsOnPage+'&page='+activePage+'&sortBy='+sortTrem+'&roles='+roles+'&search='+search;
+        let url = this._host +'/getAllUsers?count='+rowsOnPage+'&page='+activePage+'&sortBy='+sortTrem+'&search='+search;
 
         headers.append('Authorization', this._accessToken);
         return this._http.get(url, { headers: headers }).map((res:Response) => res.json())
@@ -32,7 +32,7 @@ export class UserService {
         this._accessToken   = this._commanService.getAccessToken();
       
         headers.append('Authorization', this._accessToken);
-        return this._http.get(this._host +'/user/'+ userid, { headers: headers }).map((res:Response) => res.json())
+        return this._http.get(this._host +'/getUser/'+ userid, { headers: headers }).map((res:Response) => res.json())
     }
 
     /*Use to update user detail with there ID*/

@@ -32,7 +32,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="form-group relative has-required">
+                        <div class="form-group  has-required">
                             <label for="nf-name">Description</label>
                             <input autofocus type="text" id="description" name="description" class="form-control" #description="ngModel" [(ngModel)]="results.description" required>
                             <div class="error-block">
@@ -40,23 +40,36 @@
                                     Description is required.
                                 </small>
                             </div>
-                            </div>
                         </div>
                     </div>
+                </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="form-group relative has-required">
-                            <label for="nf-name">Package</label>
-                            <input autofocus type="text" id="package" name="package" class="form-control" #package="ngModel" [(ngModel)]="results.package" required>
+                        <div class="form-group  has-required">
+                            <label for="nf-name">Package Validity</label>
+                            <input autofocus type="text" id="package_validity" name="package_validity" class="form-control" #package_validity="ngModel" [(ngModel)]="results.package_validity" placeholder="*months" required>
                             <div class="error-block">
-                                <small *ngIf="package.errors?.required && package.touched" class="text-danger">
-                                    Package is required.
+                                <small *ngIf="package_validity.errors?.required && package_validity.touched" class="text-danger">
+                                    Package Validity is required.
                                 </small>
-                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group  has-required">
+                            <label for="nf-name">Amount</label>
+                            <input autofocus type="text" id="amount" name="amount" class="form-control" #amount="ngModel" [(ngModel)]="results.amount" required>
+                            <div class="error-block">
+                                <small *ngIf="amount.errors?.required && amount.touched" class="text-danger">
+                                    Amount is required.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card-footer">
                 <button type="reset" class="btn btn-secondary whiteclr" [routerLink]="['/Subscription/list']"> Cancel</button>
                 <button type="submit" class="pull-right btn btn-primary orangeclr" [disabled]="!addSubscriptionForm.valid">{{SubscriptionID ? 'Update' : 'Save'}}</button>
@@ -64,4 +77,4 @@
         </form>
     </div>
     <!-- .card -->
-</div>
+</div>   

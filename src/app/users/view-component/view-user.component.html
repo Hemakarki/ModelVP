@@ -22,20 +22,28 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <th width="20%">Name</th>
-                                    <td data-label="Name">{{user.firstName}} {{user.lastName}}</td>
+                                    <th width="20%">User Name</th>
+                                    <td data-label="User Name">{{user.username}}</td>
                                 </tr>
                                 <tr>
-                                    <th width="20%">Email</th>
-                                    <td data-label="Email">{{user.email}}</td>
+                                    <th width="20%">Full Name</th>
+                                    <td data-label="Full Name">{{user.full_name}}</td>
+                                </tr>
+                                <tr>
+                                    <th width="20%">Total Followers</th>
+                                    <td data-label="Total Followers">{{user.followed_by_count}}</td>
+                                </tr>
+                                <tr>
+                                    <th width="20%">Total Media</th>
+                                    <td data-label="Total Media">{{user.media_count}}</td>
                                 </tr>
                                 <tr>
                                     <th width="20%">Activated on</th>
-                                    <td data-label="Activated on">{{user.createdAt | date:'dd/MM/yyyy'}}</td>
+                                    <td data-label="Activated on">{{user.created_at | date:'dd/MM/yyyy'}}</td>
                                 </tr>
                                 <tr>
                                     <th width="20%">Modified on</th>
-                                    <td data-label="Modified on">{{user.updatedAt | date:'dd/MM/yyyy'}}</td>
+                                    <td data-label="Modified on">{{user.updated_at | date:'dd/MM/yyyy'}}</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -55,9 +55,15 @@
                                 </th>
                                 <th width="15%">Description</th>
                                 <th width="20%">
-                                    <mfDefaultSorter by="type">Package
-                                        <i *ngIf="sortOrder == 'asc' && sortBy == 'type'" class="fa fa-sort-asc" aria-hidden="true"></i>
-                                        <i *ngIf="sortOrder == 'desc' && sortBy == 'type'" class="fa fa-sort-desc" aria-hidden="true"></i>
+                                    <mfDefaultSorter by="type">Package Validity
+                                        <i *ngIf="sortOrder == 'asc' && sortBy == 'package_validity'" class="fa fa-sort-asc" aria-hidden="true"></i>
+                                        <i *ngIf="sortOrder == 'desc' && sortBy == 'package_validity'" class="fa fa-sort-desc" aria-hidden="true"></i>
+                                    </mfDefaultSorter>
+                                </th>
+                                <th width="20%">
+                                    <mfDefaultSorter by="type">Amount
+                                        <i *ngIf="sortOrder == 'asc' && sortBy == 'amount'" class="fa fa-sort-asc" aria-hidden="true"></i>
+                                        <i *ngIf="sortOrder == 'desc' && sortBy == 'amount'" class="fa fa-sort-desc" aria-hidden="true"></i>
                                     </mfDefaultSorter>
                                 </th>
                                 <th width="10%">Actions</th>
@@ -69,16 +75,17 @@
                                 <td colspan="6">No record to display.</td>
                             </tr> 
                             <tr *ngFor="let list of mf.data">
-                                <td data-label="Name"><a href="javascript:void(0);" [routerLink]="['/Subscription/list/',list.id]" >{{list.title}}</a></td>
-                                <td data-label="Role">{{list.description}}</td>
-                                <td data-label="Email">{{list.Package}}</td>
+                                <td data-label="Title"><a href="javascript:void(0);" [routerLink]="['/Subscription/list/',list._id]" >{{list.title}}</a></td>
+                                <td data-label="Description">{{list.description}}</td>
+                                <td data-label="Package Validity">{{list.package_validity}}</td>
+                                <td data-label="Amount">{{list.amount}}</td>
                                 <td data-label="Actions">
-                                    <button [disabled]="!addEditDelete" [routerLink]="['/Subscription/edit/',list.id]" class="btn btn-success" title="Edit" style="padding:1px 4px"><i class="fa fa-pencil"></i></button>
-                                    <button [disabled]="!addEditDelete" (click)="removeSubscription(list.id)" class="btn btn-danger orange" title="Delete" style="padding: 1px 4px"><i class="fa fa-trash"></i></button>
+                                    <button [disabled]="!addEditDelete" [routerLink]="['/Subscription/edit/',list._id]" class="btn btn-success" title="Edit" style="padding:1px 4px"><i class="fa fa-pencil"></i></button>
+                                    <button [disabled]="!addEditDelete" (click)="removeSubscription(list._id)" class="btn btn-danger orange" title="Delete" style="padding: 1px 4px"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>
-                        <tfoot>
+                        <!-- <tfoot>
                             <tr>
                                 <td colspan="6">
                                     <div class="pagination-section" *ngIf="itemsTotal > 0">
@@ -104,7 +111,7 @@
                                     </div>  
                                 </td>    
                             </tr>                            
-                        </tfoot>
+                        </tfoot> -->
                     </table>
                 </div>
             </div>

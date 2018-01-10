@@ -8,7 +8,7 @@ import { CookieService } from 'ngx-cookie';
 })
 export class ViewUserComponent {
 	public userID        = '';
-	public user          = {};
+	public user          = [];
     public isLoading     = true;
     public addEditDelete = false
 
@@ -21,7 +21,7 @@ export class ViewUserComponent {
         this.userID = _route.snapshot.params['id'];
   	    this._userService.get(this.userID).subscribe(res => {
             if(res.success) {
-               this.user = res.data;
+               this.user = res.userdata;
                this.isLoading = false;
             } else {
                this.checkAccessToken(res.error); 
@@ -34,7 +34,6 @@ export class ViewUserComponent {
     checkAccessToken( err ): void {
         let code    = err.code;
         let message = err.message;
-
         if( (code == 401 && message == "authorization")) {
             this._cookieService.removeAll();
             this._router.navigate(['/login', {data: true}]);

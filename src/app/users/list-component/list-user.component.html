@@ -50,19 +50,25 @@
                                         </mfDefaultSorter>
                                     </th>
                                     <th width="15%">
-                                        <mfDefaultSorter by="email">Email
-                                            <i *ngIf="sortOrder == 'asc'  && sortBy == 'email'" class="fa fa-sort-asc" aria-hidden="true"></i>
-                                            <i *ngIf="sortOrder == 'desc'  && sortBy == 'email'" class="fa fa-sort-desc" aria-hidden="true"></i>
+                                        <mfDefaultSorter by="full_name">Full Name
+                                            <i *ngIf="sortOrder == 'asc'  && sortBy == 'full_name'" class="fa fa-sort-asc" aria-hidden="true"></i>
+                                            <i *ngIf="sortOrder == 'desc'  && sortBy == 'full_name'" class="fa fa-sort-desc" aria-hidden="true"></i>
+                                        </mfDefaultSorter>
+                                    </th>
+                                    <th width="15%">
+                                        <mfDefaultSorter by="followed_by_count:">Total Followers
+                                            <i *ngIf="sortOrder == 'asc'  && sortBy == 'followed_by_count:'" class="fa fa-sort-asc" aria-hidden="true"></i>
+                                            <i *ngIf="sortOrder == 'desc'  && sortBy == 'followed_by_count:'" class="fa fa-sort-desc" aria-hidden="true"></i>
+                                        </mfDefaultSorter>
+                                    </th>
+                                    <th width="15%">
+                                        <mfDefaultSorter by="media_count">Total Media
+                                            <i *ngIf="sortOrder == 'asc'  && sortBy == 'media_count'" class="fa fa-sort-asc" aria-hidden="true"></i>
+                                            <i *ngIf="sortOrder == 'desc'  && sortBy == 'media_count'" class="fa fa-sort-desc" aria-hidden="true"></i>
                                         </mfDefaultSorter>
                                     </th>
                                     <th width="15%">
                                         <mfDefaultSorter by="createdAt">Activated On
-                                            <i *ngIf="sortOrder == 'asc'  && sortBy == 'createdAt'" class="fa fa-sort-asc" aria-hidden="true"></i>
-                                            <i *ngIf="sortOrder == 'desc'  && sortBy == 'createdAt'" class="fa fa-sort-desc" aria-hidden="true"></i>
-                                        </mfDefaultSorter>
-                                    </th>
-                                    <th width="15%">
-                                        <mfDefaultSorter by="createdAt">Status
                                             <i *ngIf="sortOrder == 'asc'  && sortBy == 'createdAt'" class="fa fa-sort-asc" aria-hidden="true"></i>
                                             <i *ngIf="sortOrder == 'desc'  && sortBy == 'createdAt'" class="fa fa-sort-desc" aria-hidden="true"></i>
                                         </mfDefaultSorter>
@@ -74,17 +80,11 @@
                                     <td colspan="6">No record to display.</td>
                                 </tr> 
                                 <tr *ngFor="let user of mf.data">
-                                    <td data-label="Name"><a href="javascript:void(0);" (click)="viewUser(user.id)">{{user.username}}</a></td>
-                                    <td data-label="Email">{{user.email}}</td>
-                                    <td data-label="Mobile">{{user.mobile ? user.mobile : '-'}}</td>
-                                    <td data-label="District">{{user.state ? user.state : '-'}}</td>
-                                    <td data-label="Activated On">{{user.createdAt | date: 'dd/MM/yyyy'}}</td>
-                                    <td data-label="Status">
-                                        <label class="switch">
-                                          <input type="checkbox" [checked]="user.status" (change)= changeStatus(user.id,$event) >
-                                          <span class="slider round"></span>
-                                        </label>
-                                    </td>
+                                    <td data-label="Name"><a href="javascript:void(0);" (click)="viewUser(user._id)">{{user.username}}</a></td>
+                                    <td data-label="Full Name">{{user.full_name}}</td>
+                                    <td data-label="Total Followers">{{user.followed_by_count}}</td>
+                                    <td data-label="Total Media">{{user.media_count}}</td>
+                                    <td data-label="Activated On">{{user.created_at | date: 'dd/MM/yyyy'}}</td>
                                 </tr>
                             </tbody>
                             <tfoot>

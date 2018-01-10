@@ -27,7 +27,7 @@
                             </form>
                         </div>
                         <div class="col-sm-9 col-12 text-right linehght">
-                            <button type="button" class="btn btn-success btnadd" *ngIf="addEditDelete" [routerLink]="['/Coins_package/add']">Add Coins_package </button>
+                            <button type="button" class="btn btn-success btnadd" *ngIf="addEditDelete" [routerLink]="['/Coins_package/add']">Add Coins package </button>
                         </div>
                     </div>
                     <!-- .row -->
@@ -47,6 +47,12 @@
                         (mfSortOrderChange)="onSortOrder($event)">
                         <thead>
                             <tr>
+                                <th width="15%">
+                                    <mfDefaultSorter by="firstName">Title
+                                        <i *ngIf="sortOrder == 'asc'  && sortBy == 'title'" class="fa fa-sort-asc" aria-hidden="true"></i>
+                                        <i *ngIf="sortOrder == 'desc'  && sortBy == 'title'" class="fa fa-sort-desc" aria-hidden="true"></i>
+                                    </mfDefaultSorter>
+                                </th>
                                 <th width="15%">
                                     <mfDefaultSorter by="firstName">Amount
                                         <i *ngIf="sortOrder == 'asc'  && sortBy == 'amount'" class="fa fa-sort-asc" aria-hidden="true"></i>

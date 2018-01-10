@@ -13,7 +13,7 @@
                 <div class="col-sm-9 col-12 text-right linehght">
                     <button type="button" class="btn btn-secondary" [routerLink]="['/Subscription/list']">Back</button>
                     <button *ngIf="addEditDelete" type="button" class="btn btn-success pull-right" 
-                    [routerLink]="['/Subscription/edit/',results.id]">Edit</button>
+                    [routerLink]="['/Subscription/edit/',results._id]">Edit</button>
                     &nbsp;
                 </div>
             </div>
@@ -26,19 +26,28 @@
                         <p>{{results.title}}</p>
                     </div>
                 </div>
-                 <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="nf-name">Description</label>
-                        <p>{{results.description}}</p>
-                    </div>
-                </div>
-              
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="nf-name">Category</label>
-                        <p>{{results.category}}</p>
+                        <label for="nf-name">Description</label>
+                        <p>{{results.description}}</p>
+                    </div>
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="nf-name">Package Validity</label>
+                        <p>{{results.package_validity}}</p>
+                    </div>
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="nf-name">Amount</label>
+                        <p>{{results.amount}}</p>
                     </div>
                 </div> 
             </div>
