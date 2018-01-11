@@ -19,7 +19,8 @@ import { NG2DataTableModule } from "angular2-datatable-pagination";
 		FlashMessagesModule,
 		FormsModule,
 		CustomFormsModule,
-		NG2DataTableModule
+		NG2DataTableModule,
+		
 	],
 	exports: [
     RouterModule,

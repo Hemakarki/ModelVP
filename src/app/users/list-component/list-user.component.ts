@@ -3,7 +3,6 @@ import { Router, NavigationEnd } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { CommanService } from '../../shared/services/comman.service';
 import { CookieService } from 'ngx-cookie';
-import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 import { FlashMessagesService } from 'ngx-flash-messages';
 
 declare let jsPDF; 

@@ -33,19 +33,6 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group  has-required">
-                            <label for="nf-name">Package Validity</label>
-                            <input autofocus type="number" id="package_validity" name="package_validity" class="form-control" #package_validity="ngModel" [(ngModel)]="results.package_validity" placeholder="*months" required>
-                            <div class="error-block">
-                                <small *ngIf="package_validity.errors?.required && package_validity.touched" class="text-danger">
-                                    Package Validity is required.
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group  has-required">
                             <label for="nf-name">Amount</label>
                             <input autofocus type="number" id="amount" name="amount" class="form-control" #amount="ngModel" [(ngModel)]="results.amount" required>
                             <div class="error-block">
@@ -56,9 +43,22 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group  has-required">
+                            <label for="nf-name">Package Validity</label>
+                            <input autofocus type="number" id="package_validity" name="package_validity" class="form-control" #package_validity="ngModel" [(ngModel)]="results.package_validity" placeholder="*months" required>
+                            <div class="error-block">
+                                <small *ngIf="package_validity.errors?.required && package_validity.touched" class="text-danger">
+                                    Package Validity is required.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="card-footer">
-                <button type="reset" class="btn btn-secondary whiteclr" [routerLink]="['/Coins/list']"> Cancel</button>
+                <button type="reset" class="btn btn-secondary whiteclr" [routerLink]="['/Coins_package/list']"> Cancel</button>
                 <button type="submit" class="pull-right btn btn-primary orangeclr" [disabled]="!addcoinspackageForm.valid">{{CoinsID ? 'Update' : 'Save'}}</button>
             </div>
         </form>

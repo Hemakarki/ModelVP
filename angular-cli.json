@@ -16,9 +16,11 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
+        "../node_modules/sweetalert2/dist/sweetalert2.css",
         "scss/style.scss"
       ],
       "scripts": [
+        "../node_modules/sweetalert2/dist/sweetalert2.js",
         "../node_modules/chart.js/dist/Chart.bundle.min.js",
         "../node_modules/chart.js/dist/Chart.min.js"        
       ],

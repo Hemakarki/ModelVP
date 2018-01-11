@@ -23,7 +23,13 @@ export class AddUpdateSubscriptionComponent implements OnInit {
     public type;
     public errMessage = '';
 
-    constructor(private _router : Router,private _activateRouter: ActivatedRoute, private _SubscriptionService:SubscriptionService ,private _commanService:CommanService, private _flashMessagesService: FlashMessagesService,private _cookieService: CookieService){
+    constructor(private _router : Router,
+        private _activateRouter: ActivatedRoute, 
+        private _SubscriptionService:SubscriptionService ,
+        private _commanService:CommanService,
+        private _flashMessagesService: FlashMessagesService,
+        private _cookieService: CookieService
+    ){
         this.SubscriptionId = _activateRouter.snapshot.params['id'];
         	if(this.SubscriptionId){
     		this._SubscriptionService.getRecordById(this.SubscriptionId).subscribe( res => {
@@ -43,38 +49,36 @@ export class AddUpdateSubscriptionComponent implements OnInit {
     }
 
     ngOnInit(): void {
-          this.showDangerAlert();
-      }
+        this.showDangerAlert();
+    }
 
-      save(){
-      	this.isLoading = true;
-      	if(this.SubscriptionId){
-      		this._SubscriptionService.editRecord(this.results).subscribe( res => {
-                this.isLoading         = false;
-                this._cookieService.put('SubscriptionAlert', 'Updated successfully.');
-                this._router.navigate(['/Subscription/list']);
-      		}, err => {
-      			this.isLoading = false;
-      		})
-      	} else {
-      		this._SubscriptionService.addRecord(this.results).subscribe(res => {
-                this.isLoading         = false;
-                this._cookieService.put('SubscriptionAlert', 'Added successfully.');
-                this._router.navigate(['/Subscription/list']);
-            },err => {
-                   var errBody = JSON.parse(err._body);
-                    if(errBody.invalidAttributes.name){
-                      let dangerErrors = "Subscription name already exists.";
-                      this._cookieService.put('SubscriptionExistAlert', dangerErrors);
-                    }
-                this.showDangerAlert();
-                this.isLoading = false;
-            });
-      	}
-      }
+    save(){
+    	this.isLoading = true;
+    	if(this.SubscriptionId){
+    		this._SubscriptionService.editRecord(this.results).subscribe( res => {
+              this.isLoading         = false;
+              this._cookieService.put('SubscriptionAlert', 'Updated successfully.');
+              this._router.navigate(['/Subscription/list']);
+    		}, err => {
+    			this.isLoading = false;
+    		})
+    	} else {
+    		this._SubscriptionService.addRecord(this.results).subscribe(res => {
+              this.isLoading         = false;
+              this._cookieService.put('SubscriptionAlert', 'Added successfully.');
+              this._router.navigate(['/Subscription/list']);
+          },err => {
+                let dangerErrors = "Subscription title already exists.";
+                this._cookieService.put('SubscriptionExistAlert', dangerErrors);
+              this.showDangerAlert();
+              this.isLoading = false;
+          });
+    	}
+    }
 
     showDangerAlert(): void {
         let alertMessage = this._cookieService.get('SubscriptionExistAlert');
+        console.log(alertMessage,"alertMessage")
         if( alertMessage ) {
             this._flashMessagesService.show( alertMessage, {
                 classes: ['alert', 'alert-danger'],

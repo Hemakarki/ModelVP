@@ -23,7 +23,13 @@ export class AddUpdateCoins_packageComponent implements OnInit {
     public type;
     public errMessage = '';
 
-    constructor(private _router : Router,private _activateRouter: ActivatedRoute, private _Coins_packageService:Coins_packageService ,private _commanService:CommanService, private _flashMessagesService: FlashMessagesService,private _cookieService: CookieService){
+    constructor(private _router : Router,
+        private _activateRouter: ActivatedRoute, 
+        private _Coins_packageService:Coins_packageService ,
+        private _commanService:CommanService, 
+        private _flashMessagesService: FlashMessagesService,
+        private _cookieService: CookieService
+    ){
     	this.Coins_packageId = _activateRouter.snapshot.params['id'];
         	if(this.Coins_packageId){
     		this._Coins_packageService.getRecordById(this.Coins_packageId).subscribe( res => {
@@ -52,28 +58,23 @@ export class AddUpdateCoins_packageComponent implements OnInit {
       		this._Coins_packageService.editRecord(this.results).subscribe( res => {
                 this.isLoading         = false;
                 this._cookieService.put('Coins_packageAlert', 'Updated successfully.');
-                this._router.navigate(['/Coins_package_package/list']);
+                this._router.navigate(['/Coins_package/list']);
       		}, err => {
       			this.isLoading = false;
       		})
       	} else {
-      		this._Coins_packageService.addRecord(this.results).subscribe(res => {
-                  console.log("Coins_package_package added");
-                  console.log(res);
-                this.isLoading         = false;
-                this._cookieService.put('Coins_packageAlert', 'Added successfully.');
-                this._router.navigate(['/Coins_package_package/list']);
-            },err => {
-                   var errBody = JSON.parse(err._body);
-                    if(errBody.invalidAttributes.name){
-                      let dangerErrors = "Coins_package_package name already exists.";
-                      this._cookieService.put('Coins_packageExistAlert', dangerErrors);
-                    }
-                this.showDangerAlert();
-                this.isLoading = false;
-            });
-      	}
-      }
+    		this._Coins_packageService.addRecord(this.results).subscribe(res => {
+              this.isLoading         = false;
+              this._cookieService.put('Coins_packageAlert', 'Added successfully.');
+              this._router.navigate(['/Coins_package/list']);
+          },err => {
+            let dangerErrors = "Coins package title already exists.";
+            this._cookieService.put('Coins_packageExistAlert', dangerErrors);
+              this.showDangerAlert();
+              this.isLoading = false;
+          });
+        }
+    }
 
     showDangerAlert(): void {
         let alertMessage = this._cookieService.get('Coins_packageExistAlert');

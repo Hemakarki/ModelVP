@@ -1,48 +1,49 @@
 <div class="category-wrapper">
-    <!-- loading section -->
-    <div class="aligncenter_loader" *ngIf="isLoading">
-        <div class="is-loading"><i class="page-loader"></i></div>
-    </div>
-    <!-- section ends  -->
-    <div class="card" *ngIf="!isLoading">
-        <div class="card-header">
-            <div class="row">
-                <div class="col-sm-3 col-12">
-                    <strong>View Coins_package</strong>
+        <!-- loading section -->
+        <div class="aligncenter_loader" *ngIf="isLoading">
+            <div class="is-loading"><i class="page-loader"></i></div>
+        </div>
+        <!-- section ends  -->
+        <div class="card" *ngIf="!isLoading">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-3 col-12">
+                        <strong>View Coins Package</strong>
+                    </div>
+                    <div class="col-sm-9 col-12 text-right linehght">
+                        <button type="button" class="btn btn-secondary" [routerLink]="['/Coins_package/list']">Back</button>
+                        <button *ngIf="addEditDelete" type="button" class="btn btn-success pull-right" 
+                        [routerLink]="['/Coins_package/edit/',results._id]">Edit</button>
+                        &nbsp;
+                    </div>
                 </div>
-                <div class="col-sm-9 col-12 text-right linehght">
-                    <button type="button" class="btn btn-secondary" [routerLink]="['/Coins_package/list']">Back</button>
-                    <button *ngIf="addEditDelete" type="button" class="btn btn-success pull-right" 
-                    [routerLink]="['/Coins_package/edit/',results.id]">Edit</button>
-                    &nbsp;
+            </div>
+            <div class="card-block viewmode">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="nf-name">Title</label>
+                            <p>{{results.title}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="nf-name">Package Validity (*months) </label>
+                            <p>{{results.package_validity}}</p>
+                        </div>
+                    </div> 
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="nf-name">Amount</label>
+                            <p>{{results.amount}}</p>
+                        </div>
+                    </div> 
                 </div>
             </div>
         </div>
-        <div class="card-block viewmode">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="nf-name">Title</label>
-                        <p>{{results.title}}</p>
-                    </div>
-                </div>
-                 <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="nf-name">Description</label>
-                        <p>{{results.description}}</p>
-                    </div>
-                </div>
-              
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="nf-name">Category</label>
-                        <p>{{results.category}}</p>
-                    </div>
-                </div> 
-            </div>
-        </div>
+        <!-- .card -->
     </div>
-    <!-- .card -->
-</div>

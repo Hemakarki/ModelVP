@@ -24,24 +24,24 @@ export class Coins_packageService {
 
 	getAllRecords(rowsOnPage, activePage, sortTrem , search = '') {
 
-        let url = this._host +'/allCoins_packageRoutes?count='+rowsOnPage+'&page='+activePage+'&sortBy='+sortTrem+'&search='+search;
+        let url = this._host +'/getAllCoinsPackages?count='+rowsOnPage+'&page='+activePage+'&sortBy='+sortTrem+'&search='+search;
         return this._http.get(url, this.getHeaders()).map((res:Response) => res.json())
     }
 
 	getRecordById(id){
-		return this._http.get(this._host +'/Coins_packageRoutes/'+ id, this.getHeaders()).map((res:Response) => res.json())
+		return this._http.get(this._host +'/getCoinsPackageById/'+ id, this.getHeaders()).map((res:Response) => res.json())
 	}
 
 	addRecord(field){
-		return this._http.post(this._host +'/Coins_packageRoutes',field, this.getHeaders()).map((res:Response) => res.json());
+		return this._http.post(this._host +'/addCoinsPackage',field, this.getHeaders()).map((res:Response) => res.json());
 	}
 
 	editRecord(field){
-		return this._http.put(this._host+'/Coins_packageRoutes/'+field.id,field, this.getHeaders()).map((res:Response) => res.json());
+		return this._http.put(this._host+'/editCoinsPackage/'+field.id,field, this.getHeaders()).map((res:Response) => res.json());
 	}
 
 	deleteRecord(Id){
-		return this._http.delete(this._host+'/Coins_packageRoutes/'+Id, this.getHeaders()).map((res:Response) => res.json())
+		return this._http.delete(this._host+'/removeCoinsPackage/'+Id, this.getHeaders()).map((res:Response) => res.json())
 	}
 
 }

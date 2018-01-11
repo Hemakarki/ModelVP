@@ -1,12 +1,9 @@
 import { Component,OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Coins_packageService } from '../Coins_package.service';
 import { CommanService } from '../../shared/services/comman.service';
 import { CookieService } from 'ngx-cookie';
-import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 import { FlashMessagesService } from 'ngx-flash-messages';
-
-declare let jsPDF; 
 
 @Component({
 	selector:'Coins_package-view',
@@ -40,15 +37,14 @@ export class ListCoins_packageComponent implements OnInit{
 	}
 
 	ngOnInit(): void {
-
-       /* this._router.events.subscribe((evt) => {
+      this._router.events.subscribe((evt) => {
             if (!(evt instanceof NavigationEnd)) {
                 return;
             }
             window.scrollTo(0, 0)
         });
 
-        set initial sort condition */
+        /*  set initial sort condition */
         this.sortTrem = 'createdAt' + ' ' + this.sortOrder; 
 
         /*Load data*/
@@ -97,7 +93,7 @@ export class ListCoins_packageComponent implements OnInit{
             this.isLoading     = false;
             this.isPageLoading = false;
             if(res.success) {
-                this.data          = res.data.Coins_package;
+                this.data          = res.data.CoinsPackage;
                 this.itemsTotal    = res.data.total;
                 this.showAlert();
             } else {
@@ -131,8 +127,8 @@ export class ListCoins_packageComponent implements OnInit{
     }
 
     showAlert(): void {
-
         let alertMessage = this._cookieService.get('userAlert');
+        console.log("here", this._cookieService.get('userAlert'))
         if( alertMessage ) {
             this._flashMessagesService.show( alertMessage, {
                 classes: ['alert', 'alert-success'],
@@ -141,81 +137,4 @@ export class ListCoins_packageComponent implements OnInit{
             this._cookieService.remove('userAlert');
         }    
     }
-    
-    downloadCSV(): void {
-        let i;
-        let filteredData = [];
-        
-        let header = {
-            amount:"Amount",
-            Package_Validity:'Package_Validity'
-        }
-
-        filteredData.push(header);
-
-        for ( i = 0; i < this.data.length ; i++ ) { 
-            let date = new Date(this.data[i].createdAt);
-            let temp = {
-                amount: this.data[i].amount,
-                Package_Validity: this.data[i].Package_Validity ? this.data[i].Package_Validity : '-'
-            };
-
-            filteredData.push(temp);
-        }       
-
-        let fileName = "AdminUsersReport-"+Math.floor(Date.now() / 1000); 
-        new Angular2Csv( filteredData, fileName);
-    }
-
-    downloadPDF() {
-        
-        let i;
-        let filteredData = [];
-
-        let header = [
-            "Amount",
-            "Package_Validity"
-        ]  
-
-        for ( i = 0; i < this.data.length ; i++ ) { 
-            let date = new Date(this.data[i].createdAt);
-            let registeredOn = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
-
-            let temp = [
-                this.data[i].Amount,  
-                this.data[i].description,                
-                this.data[i].Package_Validity
-            ];
-
-            filteredData.push(temp);
-        }       
-
-        let fileName = "AdminUsersReport-"+Math.floor(Date.now() / 1000); 
-
-        var doc = new jsPDF();    
-
-        doc.autoTable(header, filteredData,  {
-            theme: 'grid',
-            headerStyles: {fillColor: 0},
-            startY: 10, // false (indicates margin top value) or a number 
-            margin: {horizontal: 6}, // a number, array or object 
-            pageBreak: 'auto', // 'auto', 'avoid' or 'always' 
-            tableWidth: 'wrap', // 'auto', 'wrap' or a number,  
-            tableHeight: '1', // 'auto', 'wrap' or a number,  
-            showHeader: 'everyPage',
-            tableLineColor: 200, // number, array (see color section below) 
-            tableLineWidth: 0,
-            fontSize: 10,
-            overflow : 'linebreak',
-            columnWidth : 'auto',
-            cellPadding : 2,       
-            cellSpacing : 0,       
-            valign : 'top',
-            lineHeight: 15, 
-
-        });
-
-        doc.save(fileName);
-    }
-	
 }
