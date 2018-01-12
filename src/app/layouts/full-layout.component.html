@@ -16,7 +16,8 @@
         <i class="fa fa-ellipsis-v"></i>
       </a>
       <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/change-password']">Change password?</a>
+          <a (click)="showModal()" href="javascript:void(0);" class="dropdown-item" ><i class="fa fa-key"></i>Change Password </a>
+          <!-- <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/change-password']">Change password?</a> -->
         <!-- <a class="dropdown-item" href="JavaScript:Void(0);" style="cursor: not-allowed;"><i class="fa fa-wrench"></i> Setting</a> -->
         <div class="divider"></div>
         <a class="dropdown-item" (click)="logout()" href="#"><i class="fa fa-lock"></i> Logout</a>
