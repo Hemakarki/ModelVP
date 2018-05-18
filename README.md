@@ -1,2 +1,2 @@
-# clientAngular
-angular 4
+
+angular "2.4.9"
